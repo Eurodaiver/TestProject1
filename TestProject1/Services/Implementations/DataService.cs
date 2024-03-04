@@ -21,8 +21,8 @@ namespace TestProject1.Services.Implementations
 
         public IEnumerable<Data> GetAll(int page, int pageSize, string? filter)
         {
-            var fromId = pageSize * (page - 1) + 1;
-            var res = _repository.GetAll().Where(x => x.Id >= fromId && x.Value.Contains(filter ?? "")).OrderBy(x => x.Id).Take(pageSize).ToList();
+            var skip = pageSize * (page - 1) ;
+            var res = _repository.GetAll().Where(x => x.Value.Contains(filter ?? "")).OrderBy(x => x.Id).Skip(skip).Take(pageSize).ToList();
             _logger.LogInformation("Selected {0} rows.", res.Count);
             return res;
         }

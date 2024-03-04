@@ -32,7 +32,7 @@ function Task1() {
         getAll(1, filter);
       })
       .catch(error => {
-        setAlert(JSON.stringify(error))
+        setAlert(JSON.stringify(`ERROR: ${error}`))
         console.error(error);
       });
   }
@@ -49,7 +49,6 @@ function Task1() {
       .then(response => response.json())
       .then(responseJson => {
         console.log("loaded", responseJson);
-        setAlert(`Successfully loaded ${responseJson.data.length} records from DB.`);
         setData(responseJson.data);
         setPages(responseJson.pages);
       })
@@ -80,7 +79,7 @@ function Task1() {
               Filter by Value:
             </Form.Label>
             <Col sm="8">
-              <Form.Control value={filter} onChange={(e) => { setFilter(e.target.value) }} />
+              <Form.Control value={filter} onChange={(e) => { setActivePage(1); setFilter(e.target.value) }} />
             </Col>
             <Col sm="2">
               <Button onClick={() => { getAll(activePage, filter) }}>Load</Button>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using TestProject1.Models;
 using TestProject1.Repositories.Interfaces;
@@ -28,7 +29,8 @@ namespace TestProject1.Controllers
         {
             var data = _dataService.GetAll(page, pageSize, filter);
             int count = _dataService.GetCount(filter);
-            return new JsonResult(new ViewModel { data = data, pages = count / pageSize + 1 });
+            int pages = (int)Math.Ceiling((double)count / pageSize);
+            return new JsonResult(new ViewModel { data = data, pages = pages });
         }
 
         [HttpPost]
