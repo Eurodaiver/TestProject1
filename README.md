@@ -1,4 +1,4 @@
-# test project IT Expert
+# Test project for IT Expert
 
 
 ## Customize configuration
