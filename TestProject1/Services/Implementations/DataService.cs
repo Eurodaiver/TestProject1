@@ -7,6 +7,7 @@ using TestProject1.Services.Interfaces;
 
 namespace TestProject1.Services.Implementations
 {
+    #nullable enable
     public class DataService : IDataService
     {
         private readonly ILogger<DataService> _logger;
